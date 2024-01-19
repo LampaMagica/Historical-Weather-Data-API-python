@@ -15,5 +15,6 @@ def api_v1(word):
     }
     return data
 
-if __name__ == "__name__":
-    app.run(debug=True)
+
+
+app.run(debug=True)
