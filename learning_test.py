@@ -1,4 +1,5 @@
 from flask import Flask
+import requests
 
 app = Flask(__name__)
 
@@ -9,10 +10,22 @@ def home():
 
 @app.route('/api/v1/<word>')
 def api_v1(word):
+
+    #Get the word data
+    r = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
+
+    #Format data to json
+    row_data = r.json()
+
+    #Get the word definition
+    definition = row_data[0].get('meanings')[0].get('definitions')[0].get('definition')
+
+    #Setting up our API
     data = {
-        'word': word,
-        'definition': word.upper()
+        'Word': word,
+        'Definition': definition
     }
+
     return data
 
 

@@ -17,7 +17,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    station = get_data.get_station()
+    html_rendered = render_template('home.html', station=station.to_html())
+    return html_rendered
 
 @app.route('/api/v1/<date>/<station>')
 def api_v1(date,station):
@@ -30,4 +32,5 @@ def api_v1(date,station):
     }
     return data
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

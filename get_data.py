@@ -41,6 +41,9 @@ def get_row_by_date(date,id):
     return df_row.iloc[0].to_dict()
 
 
+def get_station():
+    df = pd.read_csv('src\data_small\stations.txt', skiprows=17)
+    return df
 
 
 
